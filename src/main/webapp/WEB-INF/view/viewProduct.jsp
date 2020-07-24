@@ -1,4 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Le
@@ -11,6 +13,7 @@
 <head>
   <title>ProductList</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js" > </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -57,7 +60,7 @@
 	<div class="container">
 		<div class="page-header"></div>
 <h1>Product Details</h1>
-<div class="container">
+<div class="container" data-ng-app="cartApp">
             <div class="row">
                 <div class="col-md-5">
                     <img src="#" alt="image" style="width:100%; height: 300px" />
@@ -70,11 +73,25 @@
                         <strong>Category</strong> : ${product.productCategory}
                     </p>
                     <h4>${product.productPrice} Rupees</h4>
+                    <br>
+                    <p ng-controller="cartCtrl">
+                        <a href="<c:url value="/productList" />" class="btn btn-default">Back</a>
+                        <a href="#" class="btn btn-warning btn-large"
+                           ng-click="addToCart('${product.productId}')"><span
+                                class="glyphicon glyphicon-shopping-cart"></span>Order
+                            Now</a>
+                     <a href="<spring:url value="/customer/cart" />"
+                           class="btn btn-default"><span class="glyphicon glyphicon-hand-right"></span>View Cart</a>
+                    </p>
          
-                    	</div>
+                    	
+                    	
+                    	
+                    	
+               </div>
             </div>
         </div>
-
+        <script src="<c:url value="/resources/controller.js" /> "></script>
 
 
 

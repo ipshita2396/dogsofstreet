@@ -15,7 +15,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+  <link href="<c:url value="/resources/css/main2.css" />" rel="stylesheet">
   </head>
 
 <nav class="navbar navbar-inverse">
@@ -23,33 +23,29 @@
   <div class="container-fluid">
 
     <div class="navbar-header">
-    	<img class ="img-responsive" src="Images/main.png" height="48px" width="50px"/>
+    	<img class ="img-responsive" src="<c:url value="/resources/Images/adopt.jpg"/>" height="48px" width="50px"/>
     </div>
-      <a class="navbar-brand brand" href="index.html"><strong>&nbsp DogOfStreet</strong></a>
+      <a class="navbar-brand brand" href="<c:url value="/" />"><strong>&nbsp <bold>DogOfStreet</bold></strong></a>
     
-    
-    <ul class="nav navbar-nav navbar-right">
-    	<li class="nav-item dropdown">
-    			<a href="#"  class=" nav-link dropdown-toggle" data-toggle="dropdown" data-target="data-target">Products
-    			<span class="caret"></span></a>
-    			<div class ="dropdown-menu" aria-labelby="dropdown-target">
-    				<div class="dropdown-item">
-
-    				<a href ="#" class="dropdown-item">T-shirt</a><br>
-    					<div class="dropdown-divider"></div>
-    				<a href ="#" class="dropdown-item">Mugs</a><br>
-    					<div class="dropdown-divider"></div>
-    				<a href ="#" class="dropdown-item">Accessories</a>
-    			</div>
-    			
-    		</div>
-    	</li>
-     <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span><strong> Sign Up</strong></a></li>
-      <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> <strong>Login</strong></a></li>
-
-    </ul>
-</div>
-</nav>
+  
+                    <ul class="nav navbar-nav navbar-right">
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <li><a>Welcome: ${pageContext.request.userPrincipal.name}</a></li>
+                            <li><a href="<c:url value="/j_spring_security_logout" /> "><h4>Logout</h4></a></li>
+                            <c:if test="${pageContext.request.userPrincipal.name != 'admin'}">
+                                <li><a href="<c:url value="/customer/cart" />"><h4>Cart</h4>></a></li>
+                            </c:if>
+                            <c:if test="${pageContext.request.userPrincipal.name  == 'admin'}">
+                                <li><a href="<c:url value="/admin" />"><h4>Admin</h4></a></li>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${pageContext.request.userPrincipal.name  == null}">
+                        <li><a href="<c:url value="/login/" />" class="active"><h4>Login</h4></a></li>
+                        <li><a href="<c:url value="/register" />" class="active"><h4>Register</h4></a></li>
+                        </c:if>
+                    </ul>
+  </div>
+  </nav>
 
 <body>
 <div class="container-wrapper">
@@ -70,7 +66,7 @@
     
     <c:forEach items="${products}" var="product">
     <tr>
-    	<td><img src="#" alt="img"></img></td>
+    <td><img src="<c:url value="/resources/Images/${product.productId}.png" /> " alt="image" style="width:100%"/></td>
         <td>${product.productName}</td>
         <td>${product.productCategory}</td>
         <td>${product.productDiscription}</td>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +39,7 @@
     			
     		</div>
     	</li>
-     <li><a href="productList.jsp"><span class="glyphicon glyphicon-user"></span><strong>Product</strong></a></li>
+     <li><a href="<c:url value="/productList" />"><span class="glyphicon glyphicon-user"></span><strong>Product</strong></a></li>
       <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> <strong>Login</strong></a></li>
 
     </ul>
